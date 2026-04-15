@@ -1,0 +1,16 @@
+{
+  "name": "simple-blog-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend API for simple blog",
+  "main": "api.cjs",
+  "dependencies": {
+    "axios": "^1.14.0",
+    "cors": "^2.8.6",
+    "express": "5.2.1"
+  },
+  "scripts": {
+    "start": "node api.cjs",
+    "dev": "node api.cjs"
+  }
+}
