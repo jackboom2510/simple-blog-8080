@@ -15,30 +15,21 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        gap: "20px",
-        alignItems: "center",
-        padding: "16px",
-        borderBottom: "1px solid #e5e7eb",
-        marginBottom: "20px",
-      }}
-    >
-      <Link to="/" style={{ textDecoration: "none" }}>
+    <nav className="navbar">
+      <Link to="/" className="navbar-link">
         Trang chủ
       </Link>
 
-      <Link to="/about" style={{ textDecoration: "none" }}>
+      <Link to="/about" className="navbar-link">
         About
       </Link>
 
-      <Link to="/stats" style={{ textDecoration: "none" }}>
+      <Link to="/stats" className="navbar-link">
         Stats
       </Link>
 
       {isAuth && (
-        <Link to="/new-post" style={{ textDecoration: "none" }}>
+        <Link to="/new-post" className="navbar-link">
           Tạo bài viết
         </Link>
       )}
@@ -48,13 +39,13 @@ const Navbar = () => {
           <span>{username || "Người dùng"} ({role})</span>
           <button
             onClick={handleLogout}
-            style={{ cursor: "pointer", border: "1px solid #ccc", borderRadius: "6px", padding: "6px 12px" }}
+            className="navbar-logout-btn"
           >
             Logout
           </button>
         </>
       ) : (
-        <Link to="/login" style={{ textDecoration: "none" }}>
+        <Link to="/login" className="navbar-link">
           Login
         </Link>
       )}

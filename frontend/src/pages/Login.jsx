@@ -1,81 +1,97 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
+	const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (localStorage.getItem("isAuth") === "true") {
-      navigate("/");
-    }
-  }, [navigate]);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+	useEffect(() => {
+		if (localStorage.getItem("isAuth") === "true") {
+			navigate("/");
+		}
+	}, [navigate]);
 
-    try {
-      const response = await axios.post("/api/login", {
-        username,
-        password,
-      });
+	const onSubmit = async (data) => {
+		setError("");
 
-      if (response.data.success) {
-        localStorage.setItem("isAuth", "true");
-        localStorage.setItem("username", response.data.user.username);
-        localStorage.setItem("role", response.data.user.role);
-        navigate("/");
-      }
-    } catch (err) {
-      if (err.response && err.response.data.error) {
-        setError(err.response.data.error);
-      } else {
-        setError("Đã xảy ra lỗi. Vui lòng thử lại.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+		try {
+			const response = await axios.post("/api/login", data);
 
-  return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Đăng nhập</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "12px" }}>
-          <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
-          />
-        </div>
-        <div style={{ marginBottom: "12px" }}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" style={{ padding: "8px 16px" }} disabled={loading}>
-          {loading ? "Đang đăng nhập..." : "Đăng nhập"}
-        </button>
-      </form>
-    </div>
-  );
+			if (response.data.success) {
+				localStorage.setItem("isAuth", "true");
+				localStorage.setItem("username", response.data.user.username);
+				localStorage.setItem("role", response.data.user.role);
+
+				navigate("/");
+			}
+		} catch (err) {
+			if (err.response?.data?.error) {
+				setError(err.response.data.error);
+			} else {
+				setError("Đã xảy ra lỗi. Vui lòng thử lại.");
+			}
+		}
+	};
+
+	return (
+		<div className="login-container">
+			<h2>Đăng nhập</h2>
+
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="login-form-group">
+					<label>Username</label>
+					<input
+						type="text"
+						{...register("username", {
+							required: "Vui lòng nhập username",
+						})}
+						className="login-input"
+					/>
+					{errors.username && (
+						<p className="login-error">
+							{errors.username.message}
+						</p>
+					)}
+				</div>
+				<div className="login-form-group">
+					<label>Password</label>
+					<input
+						type="password"
+						{...register("password", {
+							required: "Vui lòng nhập mật khẩu",
+							minLength: {
+								value: 4,
+								message: "Mật khẩu phải có ít nhất 4 ký tự",
+							},
+						})}
+						className="login-input"
+					/>
+					{errors.password && (
+						<p className="login-error">
+							{errors.password.message}
+						</p>
+					)}
+				</div>
+
+				{error && <p className="login-error">{error}</p>}
+				<button
+					type="submit"
+					className="login-submit-btn"
+					disabled={isSubmitting}
+				>
+					{isSubmitting ? "Đang đăng nhập..." : "Đăng nhập"}
+				</button>
+			</form>
+		</div>
+	);
 };
 
 export default Login;

@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 
 const PostCard = ({ data }) => {
   return (
-    <div
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        padding: "16px",
-      }}
-    >
+    <div className="post-card">
       <h3>
         <Link to={`/post/${data.slug}`}>{data.title}</Link>
       </h3>

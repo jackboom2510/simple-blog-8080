@@ -55,24 +55,24 @@ const Stats = () => {
     <div>
       <h1>Stats</h1>
 
-      <section style={{ marginBottom: "24px" }}>
+      <section className="stats-container">
         <h2>Danh sách bài viết</h2>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="stats-table">
           <thead>
-            <tr style={{ borderBottom: "1px solid #ccc" }}>
-              <th style={{ padding: "8px", textAlign: "left" }}>ID</th>
-              <th style={{ padding: "8px", textAlign: "left" }}>Title</th>
-              <th style={{ padding: "8px", textAlign: "left" }}>Slug</th>
-              <th style={{ padding: "8px", textAlign: "left" }}>CreatedAt</th>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Slug</th>
+              <th>CreatedAt</th>
             </tr>
           </thead>
           <tbody>
             {posts.map((post) => (
-              <tr key={post.id} style={{ borderBottom: "1px solid #eee" }}>
-                <td style={{ padding: "8px" }}>{post.id}</td>
-                <td style={{ padding: "8px" }}>{post.title}</td>
-                <td style={{ padding: "8px" }}>{post.slug}</td>
-                <td style={{ padding: "8px" }}>{post.createdAt}</td>
+              <tr key={post.id}>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.slug}</td>
+                <td>{post.createdAt}</td>
               </tr>
             ))}
           </tbody>
@@ -80,20 +80,20 @@ const Stats = () => {
       </section>
 
       {isAdmin && (
-        <section>
+        <section className="stats-container">
           <h2>Danh sách người dùng</h2>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table className="stats-table">
             <thead>
-              <tr style={{ borderBottom: "1px solid #ccc" }}>
-                <th style={{ padding: "8px", textAlign: "left" }}>Username</th>
-                <th style={{ padding: "8px", textAlign: "left" }}>Role</th>
+              <tr>
+                <th>Username</th>
+                <th>Role</th>
               </tr>
             </thead>
             <tbody>
               {users.map((u, index) => (
-                <tr key={index} style={{ borderBottom: "1px solid #eee" }}>
-                  <td style={{ padding: "8px" }}>{u.username}</td>
-                  <td style={{ padding: "8px" }}>{u.role}</td>
+                <tr key={index}>
+                  <td>{u.username}</td>
+                  <td>{u.role}</td>
                 </tr>
               ))}
             </tbody>

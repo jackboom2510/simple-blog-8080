@@ -14,7 +14,7 @@ const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
+      <div className="main-layout">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route

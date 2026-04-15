@@ -2,12 +2,12 @@ import React from "react";
 
 const About = () => {
   return (
-    <section style={{ maxWidth: "800px", lineHeight: "1.6" }}>
+    <section className="about-section">
       <h1>About Me</h1>
       <img
         src="https://picsum.photos/800/300"
         alt="About"
-        style={{ width: "100%", borderRadius: "8px", marginBottom: "20px" }}
+        className="about-image"
       />
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo

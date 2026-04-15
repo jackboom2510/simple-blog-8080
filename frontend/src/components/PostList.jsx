@@ -48,13 +48,7 @@ const PostList = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-        gap: "16px",
-      }}
-    >
+    <div className="post-list">
       {posts.map((post) => (
         <PostCard key={post.slug} data={post} />
       ))}

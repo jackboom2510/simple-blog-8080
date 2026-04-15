@@ -47,10 +47,10 @@ const NewPost = () => {
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "20px auto" }}>
+    <div className="new-post-container">
       <h2>Tạo bài viết mới</h2>
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "16px" }}>
+        <div className="new-post-form-group">
           <label htmlFor="title">Tiêu đề *</label>
           <input
             id="title"
@@ -59,17 +59,11 @@ const NewPost = () => {
             onChange={(e) => setTitle(e.target.value)}
             required
             placeholder="Nhập tiêu đề bài viết"
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginTop: "4px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
+            className="new-post-input"
           />
         </div>
 
-        <div style={{ marginBottom: "16px" }}>
+        <div className="new-post-form-group">
           <label htmlFor="summary">Mô tả ngắn *</label>
           <textarea
             id="summary"
@@ -78,18 +72,11 @@ const NewPost = () => {
             required
             placeholder="Nhập mô tả ngắn về bài viết"
             rows={3}
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginTop: "4px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-              fontFamily: "inherit",
-            }}
+            className="new-post-textarea"
           />
         </div>
 
-        <div style={{ marginBottom: "16px" }}>
+        <div className="new-post-form-group">
           <label htmlFor="content">Nội dung *</label>
           <textarea
             id="content"
@@ -98,18 +85,11 @@ const NewPost = () => {
             required
             placeholder="Nhập nội dung chi tiết của bài viết"
             rows={8}
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginTop: "4px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-              fontFamily: "inherit",
-            }}
+            className="new-post-textarea"
           />
         </div>
 
-        <div style={{ marginBottom: "16px" }}>
+        <div className="new-post-form-group">
           <label htmlFor="thumbnail">Ảnh đại diện (URL)</label>
           <input
             id="thumbnail"
@@ -117,39 +97,25 @@ const NewPost = () => {
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
             placeholder="https://example.com/image.jpg"
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginTop: "4px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
+            className="new-post-input"
           />
         </div>
 
         {error && (
-          <p style={{ color: "#d32f2f", marginBottom: "16px" }}>
+          <p className="new-post-error">
             Lỗi: {error}
           </p>
         )}
         {success && (
-          <p style={{ color: "#388e3c", marginBottom: "16px" }}>
+          <p className="new-post-success">
             ✓ {success}
           </p>
         )}
 
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div className="new-post-buttons">
           <button
             type="submit"
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#1976d2",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
+            className="new-post-submit-btn"
             disabled={loading}
           >
             {loading ? "Đang tạo..." : "Tạo bài viết"}
@@ -157,14 +123,7 @@ const NewPost = () => {
           <button
             type="button"
             onClick={() => navigate("/")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#ccc",
-              color: "black",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className="new-post-cancel-btn"
           >
             Hủy
           </button>
