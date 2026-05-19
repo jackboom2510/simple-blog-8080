@@ -4,38 +4,31 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const CommentMenu = ({ comment, onEdit, onDelete }) => {
+const ActionMenu = ({ item, onEdit, onDelete }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
-	const handleOpen = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
+	const handleOpen = (e) => setAnchorEl(e.currentTarget);
+	const handleClose = () => setAnchorEl(null);
 
 	return (
 		<>
 			<IconButton size="small" onClick={handleOpen}>
 				<MoreVertIcon fontSize="small" />
 			</IconButton>
-			<Menu
-				anchorEl={anchorEl}
-				open={Boolean(anchorEl)}
-				onClose={handleClose}
-			>
+
+			<Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
 				<MenuItem
 					onClick={() => {
-						onEdit(comment);
+						onEdit(item);
 						handleClose();
 					}}
 				>
 					Sửa
 				</MenuItem>
+
 				<MenuItem
 					onClick={() => {
-						onDelete(comment);
+						onDelete(item);
 						handleClose();
 					}}
 				>
@@ -46,4 +39,4 @@ const CommentMenu = ({ comment, onEdit, onDelete }) => {
 	);
 };
 
-export default CommentMenu;
+export default ActionMenu;

@@ -3,14 +3,12 @@
   text-align: center;
 }
 
-/* MainLayout */
 .main-layout {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   gap: 20px;
@@ -31,53 +29,48 @@
   padding: 6px 12px;
 }
 
-/* PostCard */
 .post-card {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 16px;
 }
 
-/* PostList */
 .post-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
 }
 
-/* Home */
 .home-container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
 }
 
-/* Login */
-.login-container {
+.auth-container {
   max-width: 400px;
   margin: 50px auto;
 }
 
-.login-form-group {
+.auth-form-group {
   margin-bottom: 12px;
 }
 
-.login-input {
+.auth-input {
   width: 100%;
   padding: 8px;
   margin-top: 4px;
 }
 
-.login-error {
+.auth-error {
   color: red;
   font-size: 13px;
 }
 
-.login-submit-btn {
+.auth-submit-btn {
   padding: 8px 16px;
 }
 
-/* NewPost */
 .new-post-container {
   max-width: 800px;
   margin: 20px auto;
@@ -138,7 +131,6 @@
   cursor: pointer;
 }
 
-/* About */
 .about-section {
   max-width: 800px;
   line-height: 1.6;
@@ -150,7 +142,6 @@
   margin-bottom: 20px;
 }
 
-/* Stats */
 .stats-container {
   margin-bottom: 24px;
 }
@@ -171,7 +162,6 @@
   border-bottom: 1px solid #eee;
 }
 
-/* PostDetail */
 .post-detail-date {
   color: #666;
 }
@@ -202,21 +192,18 @@
   color: green;
 }
 
-/* PostsLayout */
 .posts-layout {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* PostDetail */
 .post-detail-container {
   max-width: 800px;
   margin: 20px auto;
   padding: 0 20px;
 }
 
-/* CommentInput */
 .comment-input-container {
   margin-bottom: 24px;
 }
@@ -249,7 +236,6 @@
   margin-top: 8px;
 }
 
-/* CommentList */
 .comment-list-empty {
   color: #888;
   font-style: italic;
@@ -260,10 +246,30 @@
   margin-top: 30px;
 }
 
+.comment-list-title {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
 .comment-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.comment-item {
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #efefef;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .comment-edit-textarea {
@@ -282,11 +288,12 @@
 .comment-date {
   color: #666;
   font-size: 14px;
-  margin-left: 8px;
+  margin-left: 10px;
 }
 
 .comment-content {
-  margin-top: 8px;
+  margin: 0;
+  color: #555;
   line-height: 1.5;
 }
 

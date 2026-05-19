@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_BASE = "/api";
+const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` };
 
 const NewPost = () => {
   const navigate = useNavigate();
@@ -21,12 +22,21 @@ const NewPost = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post(`${API_BASE}/posts`, {
-        title,
-        summary,
-        content,
-        thumbnail: thumbnail || undefined,
-      });
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        `${API_BASE}/posts`,
+        {
+          title,
+          summary,
+          content,
+          thumbnail: thumbnail || undefined,
+        },
+        {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        }
+      );
 
       if (response.status === 201) {
         setSuccess("Bài viết được tạo thành công!");

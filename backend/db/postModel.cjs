@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CommentSchema = new mongoose.Schema({
   author: { type: String, default: "Khách" },
   content: { type: String, required: true },
-  createdAt: { type: String, default: () => new Date().toISOString().split("T")[0] }
+  createdAt: { type: String, default: () => new Date().toISOString() }
 });
 
 const PostSchema = new mongoose.Schema({
@@ -11,8 +11,9 @@ const PostSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   summary: { type: String, required: true },
   content: { type: String, required: true },
+  author: { type: String, required: true, default: "anonymous"},
   thumbnail: { type: String, default: "https://picsum.photos/seed/default/600/300" },
-  createdAt: { type: String, default: () => new Date().toISOString().split("T")[0] },
+  createdAt: { type: String, default: () => new Date().toISOString() },
   comments: [CommentSchema]
 });
 

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const dbConnect = require("./db/dbConnect.cjs");
@@ -7,6 +8,7 @@ const authRoutes = require("./routes/AuthRouter.cjs");
 const app = express();
 
 dbConnect();
+
 app.use(express.json());
 app.use(cors({
   origin: "*",

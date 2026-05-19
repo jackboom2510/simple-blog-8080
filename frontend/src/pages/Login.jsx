@@ -29,7 +29,7 @@ const Login = () => {
 				localStorage.setItem("isAuth", "true");
 				localStorage.setItem("username", response.data.user.username);
 				localStorage.setItem("role", response.data.user.role);
-
+				localStorage.setItem("token", response.data.token);
 				navigate("/");
 			}
 		} catch (err) {
@@ -42,26 +42,24 @@ const Login = () => {
 	};
 
 	return (
-		<div className="login-container">
+		<div className="auth-container">
 			<h2>Đăng nhập</h2>
 
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="login-form-group">
+				<div className="auth-form-group">
 					<label>Username</label>
 					<input
 						type="text"
 						{...register("username", {
 							required: "Vui lòng nhập username",
 						})}
-						className="login-input"
+						className="auth-input"
 					/>
 					{errors.username && (
-						<p className="login-error">
-							{errors.username.message}
-						</p>
+						<p className="auth-error">{errors.username.message}</p>
 					)}
 				</div>
-				<div className="login-form-group">
+				<div className="auth-form-group">
 					<label>Password</label>
 					<input
 						type="password"
@@ -72,19 +70,17 @@ const Login = () => {
 								message: "Mật khẩu phải có ít nhất 4 ký tự",
 							},
 						})}
-						className="login-input"
+						className="auth-input"
 					/>
 					{errors.password && (
-						<p className="login-error">
-							{errors.password.message}
-						</p>
+						<p className="auth-error">{errors.password.message}</p>
 					)}
 				</div>
 
-				{error && <p className="login-error">{error}</p>}
+				{error && <p className="auth-error">{error}</p>}
 				<button
 					type="submit"
-					className="login-submit-btn"
+					className="auth-submit-btn"
 					disabled={isSubmitting}
 				>
 					{isSubmitting ? "Đang đăng nhập..." : "Đăng nhập"}

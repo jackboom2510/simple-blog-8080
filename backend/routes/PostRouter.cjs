@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../db/postModel.cjs");
+const authMiddleware = require("../middleware/authMiddleware.cjs");
 
 function createSlug(title) {
   return title
@@ -46,7 +47,7 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const { title, summary, content, thumbnail } = req.body;
 
@@ -72,7 +73,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:slug", async (req, res) => {
+router.put("/:slug", authMiddleware, async (req, res) => {
   try {
     const { title, summary, content, thumbnail } = req.body;
 
@@ -98,7 +99,7 @@ router.put("/:slug", async (req, res) => {
   }
 });
 
-router.delete("/:slug", async (req, res) => {
+router.delete("/:slug", authMiddleware, async (req, res) => {
   try {
     const post = await Post.findOneAndDelete({ slug: req.params.slug });
 

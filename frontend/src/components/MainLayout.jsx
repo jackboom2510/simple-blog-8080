@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Stats from "../pages/Stats";
 import NewPost from "../pages/NewPost";
 import PostList from "./PostList";
@@ -11,33 +12,35 @@ import PostDetail from "./PostDetail";
 import ProtectedRoute from "./ProtectedRoute";
 
 const MainLayout = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="main-layout">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Outlet />
-              </ProtectedRoute>
-            }
-          >
-            <Route element={<Home />}>
-              <Route index element={<PostList />} />
-              <Route path="post/:slug" element={<PostDetail />} />
-            </Route>
+	return (
+		<>
+			<Navbar />
+			<div className="main-layout">
+				<Routes>
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route
+						path="/"
+						element={
+							<ProtectedRoute>
+								<Outlet />
+							</ProtectedRoute>
+						}
+					>
+						<Route element={<Home />}>
+							<Route index element={<Stats />} />
+							<Route path="posts" element={<PostList />} />
+							<Route path="post/:slug" element={<PostDetail />} />
+						</Route>
 
-            <Route path="new-post" element={<NewPost />} />
-            <Route path="about" element={<About />} />
-            <Route path="stats" element={<Stats />} />
-          </Route>
-        </Routes>
-      </div>
-    </>
-  );
+						<Route path="new-post" element={<NewPost />} />
+						<Route path="about" element={<About />} />
+						<Route path="stats" element={<Stats />} />
+					</Route>
+				</Routes>
+			</div>
+		</>
+	);
 };
 
 export default MainLayout;

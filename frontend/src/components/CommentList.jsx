@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CommentMenu from "./CommentMenu";
+import ActionMenu from "./ActionMenu";
 
 const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 	const [editingId, setEditingId] = useState(null);
@@ -7,7 +7,16 @@ const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 
 	const formatDate = (date) => {
 		if (!date) return "";
-		return new Date(date).toLocaleString("vi-VN");
+
+		const d = new Date(date);
+		if (isNaN(d.getTime())) return "";
+		const now = new Date();
+		const diff = (now - d) / 1000;
+		if (diff < 60) return "vừa xong";
+		if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
+		if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
+
+		return d.toLocaleDateString("vi-VN");
 	};
 
 	const startEdit = (comment) => {
@@ -36,9 +45,7 @@ const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 
 	return (
 		<div className="comment-list-container">
-			<h3 className="comment-list-title">
-				Bình luận ({comments.length})
-			</h3>
+			<h3 className="comment-list-title">Bình luận ({comments.length})</h3>
 
 			<div className="comment-list">
 				{comments.map((comment) => {
@@ -47,10 +54,7 @@ const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 					const isEditing = editingId === comment._id;
 
 					return (
-						<div
-							key={comment._id}
-							className="comment-item"
-						>
+						<div key={comment._id} className="comment-item">
 							<div className="comment-header">
 								<div>
 									<span className="comment-author">
@@ -62,8 +66,8 @@ const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 								</div>
 
 								{isOwner && !isEditing && (
-									<CommentMenu
-										comment={comment}
+									<ActionMenu
+										item={comment}
 										onEdit={startEdit}
 										onDelete={(c) => onDelete(c._id)}
 									/>
@@ -84,18 +88,13 @@ const CommentList = ({ comments = [], currentUser, onEdit, onDelete }) => {
 										>
 											Lưu
 										</button>
-										<button
-											onClick={cancelEdit}
-											className="comment-cancel-btn"
-										>
+										<button onClick={cancelEdit} className="comment-cancel-btn">
 											Hủy
 										</button>
 									</div>
 								</div>
 							) : (
-								<p className="comment-content">
-									{comment.content}
-								</p>
+								<p className="comment-content">{comment.content}</p>
 							)}
 						</div>
 					);

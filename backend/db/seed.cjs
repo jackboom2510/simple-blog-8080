@@ -13,7 +13,7 @@ const seedData = async () => {
         summary: "Đây là mô tả ngắn của bài viết đầu tiên...",
         thumbnail: "https://picsum.photos/seed/picsum/600/300",
         content: "Nội dung chi tiết của bài viết đầu tiên...",
-        createdAt: "2026-03-19",
+        createdAt: "2026-03-19T10:30:00Z",
       },
       {
         title: "Bài viết thứ hai",
@@ -21,7 +21,7 @@ const seedData = async () => {
         summary: "Đây là mô tả ngắn của bài viết thứ 2...",
         thumbnail: "https://picsum.photos/seed/picsum2/600/300",
         content: "Nội dung chi tiết của bài viết thứ hai...",
-        createdAt: "2026-03-20",
+        createdAt: "2026-03-20T14:15:00Z",
       }
     ];
 
